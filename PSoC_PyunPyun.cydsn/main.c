@@ -151,7 +151,7 @@ CY_ISR(TimerISR_Handler)
 	
 	//DACSetVoltage(waveValue);
     IDAC8_SetValue(waveValue >> 4);
-    IDAC7_SetValue(waveValue >> 5);
+    //IDAC7_SetValue(waveValue >> 5);
     
     SamplingTimer_ClearInterrupt(SamplingTimer_INTR_MASK_TC);
 }
@@ -167,7 +167,7 @@ int main()
     SamplingTimer_Start(); 
     TimerISR_StartEx(TimerISR_Handler);
     IDAC8_Start();
-    IDAC7_Start();
+    //IDAC7_Start();
     
     I2CM_Start();
 	CyDelay(500);
