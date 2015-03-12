@@ -165,7 +165,7 @@ void LCD_Puts(char8 *s)
  * 入力処理 
  *
  *======================================================*/
-
+#if 1
 // ADC
 CY_ISR(ADC_SAR_SEQ_ISR_LOC)
 {
@@ -199,13 +199,25 @@ CY_ISR(ADC_SAR_SEQ_ISR_LOC)
     /* Clear handled interrupt */
     ADC_SAR_SEQ_SAR_INTR_REG = intr_status;
 }
+#endif
+
+// Switches
+CY_ISR(WAV_FORM_ISR_handler)
+{
+    swWavFormCount++;
+}
+
+CY_ISR(LFO_FORM_ISR_handler)
+{
+    swLfoFormCount++;
+}
 
 /*======================================================
  * 波形生成
  *
  *======================================================*/
 CY_ISR(TimerISR_Handler)
-{
+{    
 	// Caluclate Wave Value
 	phaseRegister += tuningWord;
 
@@ -215,7 +227,7 @@ CY_ISR(TimerISR_Handler)
 	
 	//DACSetVoltage(waveValue);
     IDAC8_SetValue(waveValue >> 4);
-    //IDAC7_SetValue(waveValue >> 5);
+    IDAC7_SetValue(waveValue >> 5);
     
     SamplingTimer_ClearInterrupt(SamplingTimer_INTR_MASK_TC);
 }
@@ -245,10 +257,10 @@ int main()
     /* Enable interrupt and set interrupt handler to local routine */
     //ADC_SAR_SEQ_IRQ_StartEx(ADC_SAR_SEQ_ISR_LOC);
     
-    /*
-    SW_1_Int_StartEx(SW_1_ISR);
-    SW_2_Int_StartEx(SW_2_ISR);
-    */
+    // Debouncer の Interrupt handler
+    WAV_FORM_ISR_StartEx(WAV_FORM_ISR_handler);
+    LFO_FORM_ISR_StartEx(LFO_FORM_ISR_handler);
+    
     I2CM_Start();
     
     CyGlobalIntEnable;
@@ -273,23 +285,31 @@ int main()
     for(;;)
     {
          /* When conversion of sequencing channels has completed */
+#if 1        
         if((adcDataReady & ADC_SAR_SEQ_EOS_MASK) != 0u) 
         {
             adcDataReady &= ~ADC_SAR_SEQ_EOS_MASK;
-                        
+#endif                        
             /* Print voltage value to LCD */
-            sprintf(
-                lcdLine, "%4d%4d%4d    ",
-                adcResult[ADC_CH_WAV_FREQ_N], adcResult[ADC_CH_LFO_FREQ_N], adcResult[ADC_CH_LFO_DEPT_N]
-                );
             
+            sprintf(lcdLine, "FREQ LFO DPT%4d", swWavFormCount);
             LCD_SetPos(0, 0);
-            LCD_Puts("FREQ LFO DPT ");
+            LCD_Puts(lcdLine);
+            
+            sprintf(
+                lcdLine, "%4d%4d%4d%4d",
+                adcResult[ADC_CH_WAV_FREQ_N], 
+                adcResult[ADC_CH_LFO_FREQ_N], 
+                adcResult[ADC_CH_LFO_DEPT_N],
+                swLfoFormCount
+                );
             LCD_SetPos(0, 1);
             LCD_Puts(lcdLine);
             
             //CyDelay(100);
+#if 1            
         }    
+#endif        
     }
 }
 
