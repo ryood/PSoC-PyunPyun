@@ -19,15 +19,15 @@
 #define I2C_LCD_ADDR	(0b0111110)
 
 /* Buffer and packet size */
-#define BUFFER_SIZE     (2u)
-#define PACKET_SIZE     (BUFFER_SIZE)
+#define I2C_LCD_BUFFER_SIZE     (2u)
+#define I2C_LCD_PACKET_SIZE     (I2C_LCD_BUFFER_SIZE)
 
 /* Command valid status */
-#define TRANSFER_CMPLT    (0x00u)
-#define TRANSFER_ERROR    (0xFFu)
+#define I2C_LCD_TRANSFER_CMPLT    (0x00u)
+#define I2C_LCD_TRANSFER_ERROR    (0xFFu)
 
 /***************************************
-*               Macros
+* マクロ
 ****************************************/
 
 /* Set LED RED color */
@@ -43,21 +43,30 @@
                     LED_RED_Write  (1u); \
                     LED_GREEN_Write(0u); \
                 }while(0)
-					
+
+/***************************************
+* 大域変数
+****************************************/
+
 /* DDS用変数 */
 volatile uint32 phaseRegister;
 volatile uint32 tuningWord;
                 
+/*======================================================
+ * LCD制御
+ *              
+ *======================================================*/
+
 /* LCDのコントラストの設定 */
 uint8 contrast = 0b100000;	// 3.0V時 数値を上げると濃くなります。
 							// 2.7Vでは0b111000くらいにしてください。。
 							// コントラストは電源電圧，温度によりかなり変化します。実際の液晶をみて調整してください。
-
+                
 uint32 LCD_Write(uint8 *buffer)
 {
-	uint32 status = TRANSFER_ERROR;
+	uint32 status = I2C_LCD_TRANSFER_ERROR;
 	
-    I2CM_I2CMasterWriteBuf(I2C_LCD_ADDR, buffer, PACKET_SIZE, I2CM_I2C_MODE_COMPLETE_XFER);
+    I2CM_I2CMasterWriteBuf(I2C_LCD_ADDR, buffer, I2C_LCD_PACKET_SIZE, I2CM_I2C_MODE_COMPLETE_XFER);
     
 	while (0u == (I2CM_I2CMasterStatus() & I2CM_I2C_MSTAT_WR_CMPLT))
     {
@@ -70,9 +79,9 @@ uint32 LCD_Write(uint8 *buffer)
         RGB_LED_ON_GREEN;
 
         /* Check if all bytes was written */
-        if(I2CM_I2CMasterGetWriteBufSize() == BUFFER_SIZE)
+        if(I2CM_I2CMasterGetWriteBufSize() == I2C_LCD_BUFFER_SIZE)
         {
-            status = TRANSFER_CMPLT;
+            status = I2C_LCD_TRANSFER_CMPLT;
 			
 			// １命令ごとに余裕を見て50usウェイトします。
 			CyDelayUs(50);	
@@ -91,7 +100,7 @@ uint32 LCD_Write(uint8 *buffer)
 // コマンドを送信します。HD44780でいうRS=0に相当
 void LCD_Cmd(uint8 cmd)
 {
-	uint8 buffer[BUFFER_SIZE];
+	uint8 buffer[I2C_LCD_BUFFER_SIZE];
 	buffer[0] = 0b00000000;
 	buffer[1] = cmd;
 	(void) LCD_Write(buffer);
@@ -100,7 +109,7 @@ void LCD_Cmd(uint8 cmd)
 // データを送信します。HD44780でいうRS=1に相当
 void LCD_Data(uint8 data)
 {
-	uint8 buffer[BUFFER_SIZE];
+	uint8 buffer[I2C_LCD_BUFFER_SIZE];
 	buffer[0] = 0b01000000;
 	buffer[1] = data;
 	(void) LCD_Write(buffer);
@@ -140,6 +149,10 @@ void LCD_Puts(char8 *s)
 	}
 }
 
+/*======================================================
+ * 波形生成
+ *
+ *======================================================*/
 CY_ISR(TimerISR_Handler)
 {
 	// Caluclate Wave Value
@@ -156,6 +169,10 @@ CY_ISR(TimerISR_Handler)
     SamplingTimer_ClearInterrupt(SamplingTimer_INTR_MASK_TC);
 }
 
+/*======================================================
+ * メインルーチン
+ *
+ *======================================================*/
 int main()
 {
     // 変数を初期化
