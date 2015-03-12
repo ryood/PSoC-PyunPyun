@@ -10,6 +10,7 @@
  * ========================================
 */
 #include <project.h>
+#include <stdio.h>
 #include <math.h>
 #include "wavetable.h"
 
@@ -25,6 +26,11 @@
 /* Command valid status */
 #define I2C_LCD_TRANSFER_CMPLT    (0x00u)
 #define I2C_LCD_TRANSFER_ERROR    (0xFFu)
+
+/* ADC channels */
+#define ADC_CH_WAV_FREQ_N         (0x00u)
+#define ADC_CH_LFO_FREQ_N         (0x01u)
+#define ADC_CH_LFO_DEPT_N         (0x02u)
 
 /***************************************
 * マクロ
@@ -51,6 +57,12 @@
 /* DDS用変数 */
 volatile uint32 phaseRegister;
 volatile uint32 tuningWord;
+                
+/* 入力デバイス用変数 */                
+volatile uint32 adcDataReady = 0u;
+volatile int16 adcResult[ADC_SAR_SEQ_TOTAL_CHANNELS_NUM];
+volatile int swWavFormCount = 0;
+volatile int swLfoFormCount = 0;                
                 
 /*======================================================
  * LCD制御
@@ -150,6 +162,45 @@ void LCD_Puts(char8 *s)
 }
 
 /*======================================================
+ * 入力処理 
+ *
+ *======================================================*/
+
+// ADC
+CY_ISR(ADC_SAR_SEQ_ISR_LOC)
+{
+    uint32 intr_status;
+    uint32 range_status;
+
+    /* Read interrupt status registers */
+    intr_status = ADC_SAR_SEQ_SAR_INTR_MASKED_REG;
+    /* Check for End of Scan interrupt */
+    if((intr_status & ADC_SAR_SEQ_EOS_MASK) != 0u)
+    {
+        /* Read range detect status */
+        range_status = ADC_SAR_SEQ_SAR_RANGE_INTR_MASKED_REG;
+        /* Verify that the conversion result met the condition Low_Limit <= Result < High_Limit  */
+        if((range_status & (uint32)(1ul << ADC_CH_WAV_FREQ_N)) != 0u) 
+        {
+            adcResult[ADC_CH_WAV_FREQ_N] = ADC_SAR_SEQ_GetResult16(ADC_CH_WAV_FREQ_N);
+        }    
+        if((range_status & (uint32)(1ul << ADC_CH_LFO_FREQ_N)) != 0u) 
+        {
+            adcResult[ADC_CH_LFO_FREQ_N] = ADC_SAR_SEQ_GetResult16(ADC_CH_LFO_FREQ_N);
+        }    
+        if((range_status & (uint32)(1ul << ADC_CH_LFO_DEPT_N)) != 0u) 
+        {
+            adcResult[ADC_CH_LFO_DEPT_N] = ADC_SAR_SEQ_GetResult16(ADC_CH_LFO_DEPT_N);
+        }    
+        /* Clear range detect status */
+        ADC_SAR_SEQ_SAR_RANGE_INTR_REG = range_status;
+        adcDataReady |= ADC_SAR_SEQ_EOS_MASK;
+    }    
+    /* Clear handled interrupt */
+    ADC_SAR_SEQ_SAR_INTR_REG = intr_status;
+}
+
+/*======================================================
  * 波形生成
  *
  *======================================================*/
@@ -175,6 +226,8 @@ CY_ISR(TimerISR_Handler)
  *======================================================*/
 int main()
 {
+    char  lcdLine[16 + 1];
+    
     // 変数を初期化
 	double waveFrequency = 1000.0f;
 	tuningWord = waveFrequency * pow(2.0, 32) / SAMPLE_CLOCK;
@@ -184,14 +237,24 @@ int main()
     SamplingTimer_Start(); 
     TimerISR_StartEx(TimerISR_Handler);
     IDAC8_Start();
-    //IDAC7_Start();
+    IDAC7_Start();
     
+    /* Init and start sequencing SAR ADC */
+    ADC_SAR_SEQ_Start();
+    ADC_SAR_SEQ_StartConvert();
+    /* Enable interrupt and set interrupt handler to local routine */
+    //ADC_SAR_SEQ_IRQ_StartEx(ADC_SAR_SEQ_ISR_LOC);
+    
+    /*
+    SW_1_Int_StartEx(SW_1_ISR);
+    SW_2_Int_StartEx(SW_2_ISR);
+    */
     I2CM_Start();
-	CyDelay(500);
     
     CyGlobalIntEnable;
     
     // LCDをRESET
+    CyDelay(500);
     LCD_RST_Write(0u);
     CyDelay(1);
     LCD_RST_Write(1u);
@@ -205,9 +268,28 @@ int main()
 	LCD_SetPos(1, 1);
     LCD_Puts("Demonstration");
     
+    CyDelay(500);
+    
     for(;;)
     {
-        /* Place your application code here. */
+         /* When conversion of sequencing channels has completed */
+        if((adcDataReady & ADC_SAR_SEQ_EOS_MASK) != 0u) 
+        {
+            adcDataReady &= ~ADC_SAR_SEQ_EOS_MASK;
+                        
+            /* Print voltage value to LCD */
+            sprintf(
+                lcdLine, "%4d%4d%4d    ",
+                adcResult[ADC_CH_WAV_FREQ_N], adcResult[ADC_CH_LFO_FREQ_N], adcResult[ADC_CH_LFO_DEPT_N]
+                );
+            
+            LCD_SetPos(0, 0);
+            LCD_Puts("FREQ LFO DPT ");
+            LCD_SetPos(0, 1);
+            LCD_Puts(lcdLine);
+            
+            //CyDelay(100);
+        }    
     }
 }
 
