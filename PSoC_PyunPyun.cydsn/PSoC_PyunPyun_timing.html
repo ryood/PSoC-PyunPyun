@@ -539,7 +539,7 @@ function getElementsByClass(rootNode, elemName, className)
 <tr> <td class="prop"> Project :</td>
 <td class="proptext"> PSoC_PyunPyun</td></tr>
 <tr> <td class="prop"> Build Time :</td>
-<td class="proptext"> 03/12/15 16:22:24</td></tr>
+<td class="proptext"> 03/12/15 17:20:30</td></tr>
 <tr> <td class="prop"> Device :</td>
 <td class="proptext"> CY8C4245AXI-483</td></tr>
 <tr> <td class="prop"> Temperature :</td>
@@ -595,16 +595,16 @@ Clock Summary Section</span>
 <tr> 
  <td class = "text_info">CyHFCLK</td>
  <td class = "text_info">CyHFCLK</td>
- <td class = "number">24.000&nbsp;MHz</td>
- <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">48.000&nbsp;MHz</td>
+ <td class = "number">48.000&nbsp;MHz</td>
  <td class = "number">81.619&nbsp;MHz</td>
  <td class = "text_info"></td>
 </tr>
 <tr> 
  <td class = "text_info">SamplingClock</td>
  <td class = "text_info">CyHFCLK</td>
- <td class = "number">24.000&nbsp;MHz</td>
- <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">12.000&nbsp;MHz</td>
+ <td class = "number">12.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
@@ -651,8 +651,8 @@ Clock Summary Section</span>
 <tr> 
  <td class = "text_info">CyIMO</td>
  <td class = "text_info">CyIMO</td>
- <td class = "number">24.000&nbsp;MHz</td>
- <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">48.000&nbsp;MHz</td>
+ <td class = "number">48.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
@@ -667,16 +667,16 @@ Clock Summary Section</span>
 <tr> 
  <td class = "text_info">CyRouted1</td>
  <td class = "text_info">CyRouted1</td>
- <td class = "number">24.000&nbsp;MHz</td>
- <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">48.000&nbsp;MHz</td>
+ <td class = "number">48.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
 <tr> 
  <td class = "text_info">CySYSCLK</td>
  <td class = "text_info">CySYSCLK</td>
- <td class = "number">24.000&nbsp;MHz</td>
- <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">48.000&nbsp;MHz</td>
+ <td class = "number">48.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
@@ -691,8 +691,8 @@ Clock Summary Section</span>
 <tr> 
  <td class = "text_info">SamplingClock(FFB)</td>
  <td class = "text_info">SamplingClock(FFB)</td>
- <td class = "number">24.000&nbsp;MHz</td>
- <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">12.000&nbsp;MHz</td>
+ <td class = "number">12.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
@@ -716,7 +716,7 @@ Setup Subsection</span>
 <div>
 <a href="#" style="text-decoration: none; color: inherit;">
 <span class="sec_head"><span style="font-family: monospace;">+</span>
-Source Clock : CyHFCLK : Positive edge(Required Frequency 24&nbsp;MHz)</span>
+Source Clock : CyHFCLK : Positive edge(Required Frequency 48&nbsp;MHz)</span>
 </a>
 </div><div class="sta_secbody"><div class="sta_sec" >
 <div>
@@ -724,7 +724,7 @@ Source Clock : CyHFCLK : Positive edge(Required Frequency 24&nbsp;MHz)</span>
 <span class="sec_head"><span style="font-family: monospace;">+</span>
 Destination Clock : LFO_FORM_CLK : Positive edge(Required Frequency 200&nbsp;&nbsp;Hz)</span>
 </a>
-</div><div class="sta_secbody"><div class="sta_sec_desc">Path Delay Requirement : 41.6667ns(24&nbsp;MHz)</div>
+</div><div class="sta_secbody"><div class="sta_sec_desc">Path Delay Requirement : 20.8333ns(48&nbsp;MHz)</div>
 <div class="sta_sec_desc">Affects clock : CyHFCLK</div>
 <table class="sta_tscs">
  <thead> 
@@ -743,7 +743,7 @@ Destination Clock : LFO_FORM_CLK : Positive edge(Required Frequency 200&nbsp;&nb
  <td class = "text_info">\LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\/main_0</td>
  <td class = "number">81.840&nbsp;MHz</td>
  <td class = "number">12.219</td>
- <td class = "number">29.448</td>
+ <td class = "number">8.614</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -811,7 +811,7 @@ Destination Clock : LFO_FORM_CLK : Positive edge(Required Frequency 200&nbsp;&nb
 <span class="sec_head"><span style="font-family: monospace;">+</span>
 Destination Clock : WAV_FORM_CLK : Positive edge(Required Frequency 200&nbsp;&nbsp;Hz)</span>
 </a>
-</div><div class="sta_secbody"><div class="sta_sec_desc">Path Delay Requirement : 41.6667ns(24&nbsp;MHz)</div>
+</div><div class="sta_secbody"><div class="sta_sec_desc">Path Delay Requirement : 20.8333ns(48&nbsp;MHz)</div>
 <div class="sta_sec_desc">Affects clock : CyHFCLK</div>
 <table class="sta_tscs">
  <thead> 
@@ -830,7 +830,7 @@ Destination Clock : WAV_FORM_CLK : Positive edge(Required Frequency 200&nbsp;&nb
  <td class = "text_info">\WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\/main_0</td>
  <td class = "number">81.619&nbsp;MHz</td>
  <td class = "number">12.252</td>
- <td class = "number">29.415</td>
+ <td class = "number">8.581</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">

@@ -162,6 +162,26 @@ void LCD_Puts(char8 *s)
 }
 
 /*======================================================
+ * 波形生成
+ *
+ *======================================================*/
+CY_ISR(TimerISR_Handler)
+{    
+	// Caluclate Wave Value
+	phaseRegister += tuningWord;
+
+	// 32bitのphaseRegisterをテーブルの10bit(1024個)に丸める
+	uint32 index = phaseRegister >> 22;
+    uint16 waveValue = waveTableSine[index];
+	
+	//DACSetVoltage(waveValue);
+    IDAC8_SetValue(waveValue >> 4);
+    IDAC7_SetValue(waveValue >> 5);
+    
+    SamplingTimer_ClearInterrupt(SamplingTimer_INTR_MASK_TC);
+}
+
+/*======================================================
  * 入力処理 
  *
  *======================================================*/
@@ -171,7 +191,7 @@ CY_ISR(ADC_SAR_SEQ_ISR_LOC)
 {
     uint32 intr_status;
     uint32 range_status;
-
+      
     /* Read interrupt status registers */
     intr_status = ADC_SAR_SEQ_SAR_INTR_MASKED_REG;
     /* Check for End of Scan interrupt */
@@ -213,26 +233,6 @@ CY_ISR(LFO_FORM_ISR_handler)
 }
 
 /*======================================================
- * 波形生成
- *
- *======================================================*/
-CY_ISR(TimerISR_Handler)
-{    
-	// Caluclate Wave Value
-	phaseRegister += tuningWord;
-
-	// 32bitのphaseRegisterをテーブルの10bit(1024個)に丸める
-	uint32 index = phaseRegister >> 22;
-    uint16 waveValue = waveTableSine[index];
-	
-	//DACSetVoltage(waveValue);
-    IDAC8_SetValue(waveValue >> 4);
-    IDAC7_SetValue(waveValue >> 5);
-    
-    SamplingTimer_ClearInterrupt(SamplingTimer_INTR_MASK_TC);
-}
-
-/*======================================================
  * メインルーチン
  *
  *======================================================*/
@@ -255,7 +255,7 @@ int main()
     ADC_SAR_SEQ_Start();
     ADC_SAR_SEQ_StartConvert();
     /* Enable interrupt and set interrupt handler to local routine */
-    //ADC_SAR_SEQ_IRQ_StartEx(ADC_SAR_SEQ_ISR_LOC);
+    ADC_SAR_SEQ_IRQ_StartEx(ADC_SAR_SEQ_ISR_LOC);
     
     // Debouncer の Interrupt handler
     WAV_FORM_ISR_StartEx(WAV_FORM_ISR_handler);
