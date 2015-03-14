@@ -2297,7 +2297,7 @@
       </registers>
     </peripheral>
     <peripheral>
-      <name>ADC_SAR_SEQ</name>
+      <name>ADC_SAR_Seq</name>
       <description>Sequencing SAR ADC</description>
       <baseAddress>0x0</baseAddress>
       <addressBlock>

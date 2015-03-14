@@ -32,6 +32,10 @@
 #define ADC_CH_LFO_FREQ_N         (0x01u)
 #define ADC_CH_LFO_DEPT_N         (0x02u)
 
+/* ADC limits */
+#define ADC_LOW_LIMIT   ((int16)0x000)
+#define ADC_HIGH_LIMIT  ((int16)0x7FF)
+
 /***************************************
 * マクロ
 ****************************************/
@@ -50,6 +54,11 @@
                     LED_GREEN_Write(0u); \
                 }while(0)
 
+/* ADC limits trim */
+#define ADC_LIMIT(x) \
+    ((x)<ADC_LOW_LIMIT?ADC_LOW_LIMIT:((x)>=ADC_HIGH_LIMIT?ADC_HIGH_LIMIT:(x)))
+                
+
 /***************************************
 * 大域変数
 ****************************************/
@@ -59,10 +68,13 @@ volatile uint32 phaseRegister;
 volatile uint32 tuningWord;
                 
 /* 入力デバイス用変数 */                
-volatile uint32 adcDataReady = 0u;
-volatile int16 adcResult[ADC_SAR_SEQ_TOTAL_CHANNELS_NUM];
-volatile int swWavFormCount = 0;
-volatile int swLfoFormCount = 0;                
+int16 adcResult[ADC_SAR_Seq_TOTAL_CHANNELS_NUM];
+uint8 swWavForm;
+uint8 swLfoForm;
+uint8 prevSwWavForm = 0u;
+uint8 prevSwLfoForm = 0u;
+int swWavFormCount = 0;
+int swLfoFormCount = 0;                
                 
 /*======================================================
  * LCD制御
@@ -185,51 +197,32 @@ CY_ISR(TimerISR_Handler)
  * 入力処理 
  *
  *======================================================*/
-#if 1
 // ADC
-CY_ISR(ADC_SAR_SEQ_ISR_LOC)
+void pollingADC()
 {
-    uint32 intr_status;
-    uint32 range_status;
-      
-    /* Read interrupt status registers */
-    intr_status = ADC_SAR_SEQ_SAR_INTR_MASKED_REG;
-    /* Check for End of Scan interrupt */
-    if((intr_status & ADC_SAR_SEQ_EOS_MASK) != 0u)
-    {
-        /* Read range detect status */
-        range_status = ADC_SAR_SEQ_SAR_RANGE_INTR_MASKED_REG;
-        /* Verify that the conversion result met the condition Low_Limit <= Result < High_Limit  */
-        if((range_status & (uint32)(1ul << ADC_CH_WAV_FREQ_N)) != 0u) 
-        {
-            adcResult[ADC_CH_WAV_FREQ_N] = ADC_SAR_SEQ_GetResult16(ADC_CH_WAV_FREQ_N);
-        }    
-        if((range_status & (uint32)(1ul << ADC_CH_LFO_FREQ_N)) != 0u) 
-        {
-            adcResult[ADC_CH_LFO_FREQ_N] = ADC_SAR_SEQ_GetResult16(ADC_CH_LFO_FREQ_N);
-        }    
-        if((range_status & (uint32)(1ul << ADC_CH_LFO_DEPT_N)) != 0u) 
-        {
-            adcResult[ADC_CH_LFO_DEPT_N] = ADC_SAR_SEQ_GetResult16(ADC_CH_LFO_DEPT_N);
-        }    
-        /* Clear range detect status */
-        ADC_SAR_SEQ_SAR_RANGE_INTR_REG = range_status;
-        adcDataReady |= ADC_SAR_SEQ_EOS_MASK;
-    }    
-    /* Clear handled interrupt */
-    ADC_SAR_SEQ_SAR_INTR_REG = intr_status;
+    ADC_SAR_Seq_StartConvert();
+    while (ADC_SAR_Seq_IsEndConversion(ADC_SAR_Seq_RETURN_STATUS) == 0u) {
+        // 変換終了を待つ
+        ;
+    }
+    adcResult[ADC_CH_WAV_FREQ_N] = ADC_LIMIT(ADC_SAR_Seq_GetResult16(ADC_CH_WAV_FREQ_N));
+    adcResult[ADC_CH_LFO_FREQ_N] = ADC_LIMIT(ADC_SAR_Seq_GetResult16(ADC_CH_LFO_FREQ_N));
+    adcResult[ADC_CH_LFO_DEPT_N] = ADC_LIMIT(ADC_SAR_Seq_GetResult16(ADC_CH_LFO_DEPT_N));
 }
-#endif
 
 // Switches
-CY_ISR(WAV_FORM_ISR_handler)
+void pollingSW()
 {
-    swWavFormCount++;
-}
-
-CY_ISR(LFO_FORM_ISR_handler)
-{
-    swLfoFormCount++;
+    swWavForm = WAV_FORM_PIN_Read();
+    if (swWavForm && !prevSwWavForm) {
+        swWavFormCount++;
+    }
+    swLfoForm = LFO_FORM_PIN_Read();
+    if (swLfoForm && !prevSwLfoForm) {
+        swLfoFormCount++;
+    }
+    prevSwWavForm = swWavForm;
+    prevSwLfoForm = swLfoForm;    
 }
 
 /*======================================================
@@ -252,15 +245,10 @@ int main()
     IDAC7_Start();
     
     /* Init and start sequencing SAR ADC */
-    ADC_SAR_SEQ_Start();
-    ADC_SAR_SEQ_StartConvert();
-    /* Enable interrupt and set interrupt handler to local routine */
-    ADC_SAR_SEQ_IRQ_StartEx(ADC_SAR_SEQ_ISR_LOC);
+    ADC_SAR_Seq_Start();
+    ADC_SAR_Seq_StartConvert();
     
-    // Debouncer の Interrupt handler
-    WAV_FORM_ISR_StartEx(WAV_FORM_ISR_handler);
-    LFO_FORM_ISR_StartEx(LFO_FORM_ISR_handler);
-    
+    /* Init I2C LCD */
     I2CM_Start();
     
     CyGlobalIntEnable;
@@ -284,32 +272,24 @@ int main()
     
     for(;;)
     {
-         /* When conversion of sequencing channels has completed */
-#if 1        
-        if((adcDataReady & ADC_SAR_SEQ_EOS_MASK) != 0u) 
-        {
-            adcDataReady &= ~ADC_SAR_SEQ_EOS_MASK;
-#endif                        
-            /* Print voltage value to LCD */
+        pollingADC();
+        pollingSW();
             
-            sprintf(lcdLine, "FREQ LFO DPT%4d", swWavFormCount);
-            LCD_SetPos(0, 0);
-            LCD_Puts(lcdLine);
+        sprintf(lcdLine, "FREQ LFO DPT%4d", swWavFormCount);
+        LCD_SetPos(0, 0);
+        LCD_Puts(lcdLine);
+        
+        sprintf(
+            lcdLine, "%4d%4d%4d%4d",
+            adcResult[ADC_CH_WAV_FREQ_N], 
+            adcResult[ADC_CH_LFO_FREQ_N], 
+            adcResult[ADC_CH_LFO_DEPT_N],
+            swLfoFormCount
+            );
+        LCD_SetPos(0, 1);
+        LCD_Puts(lcdLine);
             
-            sprintf(
-                lcdLine, "%4d%4d%4d%4d",
-                adcResult[ADC_CH_WAV_FREQ_N], 
-                adcResult[ADC_CH_LFO_FREQ_N], 
-                adcResult[ADC_CH_LFO_DEPT_N],
-                swLfoFormCount
-                );
-            LCD_SetPos(0, 1);
-            LCD_Puts(lcdLine);
-            
-            //CyDelay(100);
-#if 1            
-        }    
-#endif        
+        //CyDelay(100);
     }
 }
 

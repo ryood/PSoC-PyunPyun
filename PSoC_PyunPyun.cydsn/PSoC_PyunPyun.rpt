@@ -1,10 +1,10 @@
-Loading plugins phase: Elapsed time ==> 0s.230ms
+Loading plugins phase: Elapsed time ==> 0s.248ms
 Initializing data phase: Elapsed time ==> 0s.000ms
 <CYPRESSTAG name="CyDsfit arguments...">
 cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p D:\Users\gizmo\Documents\PSoC\PSoC_PyunPyun\PSoC_PyunPyun.cydsn\PSoC_PyunPyun.cyprj -d CY8C4245AXI-483 -s D:\Users\gizmo\Documents\PSoC\PSoC_PyunPyun\PSoC_PyunPyun.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE</CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 2s.680ms
+Elaboration phase: Elapsed time ==> 2s.722ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
 HDL generation phase: Elapsed time ==> 0s.085ms
@@ -41,7 +41,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=D:\Users\gizmo
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Thu Mar 12 17:20:27 2015
+Sun Mar 15 00:41:22 2015
 
 
 ======================================================================
@@ -51,7 +51,7 @@ Options  :    -yv2 -q10 PSoC_PyunPyun.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Thu Mar 12 17:20:27 2015
+Sun Mar 15 00:41:22 2015
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\..\psoc\content\cyprimitives\CyPrimitives.cylib\OneTerminal\OneTerminal.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\..\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0\not_v1_0.v'
@@ -91,7 +91,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=D:\Users\gizmo
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Thu Mar 12 17:20:27 2015
+Sun Mar 15 00:41:22 2015
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -125,7 +125,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=D:\Users\gizmo
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Thu Mar 12 17:20:28 2015
+Sun Mar 15 00:41:23 2015
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -154,9 +154,8 @@ Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\lib\l
 Detecting unused logic.
 ----------------------------------------------------------
     User names
-	Net_487
-	\ADC_SAR_SEQ:Net_3125\
-	\ADC_SAR_SEQ:Net_3126\
+	\ADC_SAR_Seq:Net_3125\
+	\ADC_SAR_Seq:Net_3126\
 	\I2CM:Net_682\
 	\I2CM:uncfg_rx_irq\
 	\I2CM:Net_754\
@@ -165,10 +164,9 @@ Detecting unused logic.
 	\I2CM:Net_891\
 	\I2CM:Net_474\
 	\I2CM:Net_899\
-	Net_454
 
 
-Deleted 12 User equations/components.
+Deleted 10 User equations/components.
 Deleted 0 Synthesized equations/components.
 
 ------------------------------------------------------
@@ -176,17 +174,18 @@ Alias Detection
 ------------------------------------------------------
 Aliasing tmpOE__IDAC8_OUT_net_0 to \IDAC8:Net_3\
 Aliasing one to \IDAC8:Net_3\
+Aliasing tmpOE__WAV_FORM_PIN_net_0 to \IDAC8:Net_3\
 Aliasing tmpOE__LFO_FORM_IN_net_0 to \IDAC8:Net_3\
 Aliasing \IDAC7:Net_3\ to \IDAC8:Net_3\
 Aliasing tmpOE__IDAC7_OUT_net_0 to \IDAC8:Net_3\
-Aliasing \ADC_SAR_SEQ:Net_3107\ to zero
-Aliasing \ADC_SAR_SEQ:Net_3106\ to zero
-Aliasing \ADC_SAR_SEQ:Net_3105\ to zero
-Aliasing \ADC_SAR_SEQ:Net_3104\ to zero
-Aliasing \ADC_SAR_SEQ:Net_3103\ to zero
-Aliasing \ADC_SAR_SEQ:Net_3207_1\ to zero
-Aliasing \ADC_SAR_SEQ:Net_3207_0\ to zero
-Aliasing \ADC_SAR_SEQ:Net_3235\ to zero
+Aliasing \ADC_SAR_Seq:Net_3107\ to zero
+Aliasing \ADC_SAR_Seq:Net_3106\ to zero
+Aliasing \ADC_SAR_Seq:Net_3105\ to zero
+Aliasing \ADC_SAR_Seq:Net_3104\ to zero
+Aliasing \ADC_SAR_Seq:Net_3103\ to zero
+Aliasing \ADC_SAR_Seq:Net_3207_1\ to zero
+Aliasing \ADC_SAR_Seq:Net_3207_0\ to zero
+Aliasing \ADC_SAR_Seq:Net_3235\ to zero
 Aliasing tmpOE__WAV_FREQ_IN_net_0 to \IDAC8:Net_3\
 Aliasing \I2CM:Net_459\ to zero
 Aliasing \I2CM:Net_452\ to zero
@@ -196,6 +195,7 @@ Aliasing \I2CM:Net_416\ to zero
 Aliasing \I2CM:tmpOE__sda_net_0\ to \IDAC8:Net_3\
 Aliasing \I2CM:tmpOE__scl_net_0\ to \IDAC8:Net_3\
 Aliasing \I2CM:Net_747\ to zero
+Aliasing tmpOE__LFO_FORM_PIN_net_0 to \IDAC8:Net_3\
 Aliasing tmpOE__LFO_FREQ_IN_net_0 to \IDAC8:Net_3\
 Aliasing tmpOE__WAV_FORM_IN_net_0 to \IDAC8:Net_3\
 Aliasing tmpOE__LFO_DEPT_IN_net_0 to \IDAC8:Net_3\
@@ -208,56 +208,62 @@ Aliasing \SamplingTimer:Net_69\ to \IDAC8:Net_3\
 Aliasing \SamplingTimer:Net_66\ to zero
 Aliasing \SamplingTimer:Net_82\ to zero
 Aliasing \SamplingTimer:Net_72\ to zero
+Aliasing \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\\D\ to Net_487
+Aliasing \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\\D\ to Net_454
 Removing Rhs of wire tmpOE__IDAC8_OUT_net_0[4] = \IDAC8:Net_3\[2]
 Removing Lhs of wire one[9] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire tmpOE__LFO_FORM_IN_net_0[16] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire \IDAC7:Net_3\[23] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire tmpOE__IDAC7_OUT_net_0[33] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire \ADC_SAR_SEQ:Net_3107\[114] = zero[5]
-Removing Lhs of wire \ADC_SAR_SEQ:Net_3106\[115] = zero[5]
-Removing Lhs of wire \ADC_SAR_SEQ:Net_3105\[116] = zero[5]
-Removing Lhs of wire \ADC_SAR_SEQ:Net_3104\[117] = zero[5]
-Removing Lhs of wire \ADC_SAR_SEQ:Net_3103\[118] = zero[5]
-Removing Lhs of wire \ADC_SAR_SEQ:Net_17\[165] = \ADC_SAR_SEQ:Net_1845\[40]
-Removing Lhs of wire \ADC_SAR_SEQ:Net_3207_1\[187] = zero[5]
-Removing Lhs of wire \ADC_SAR_SEQ:Net_3207_0\[188] = zero[5]
-Removing Lhs of wire \ADC_SAR_SEQ:Net_3235\[189] = zero[5]
-Removing Lhs of wire tmpOE__WAV_FREQ_IN_net_0[258] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire \I2CM:Net_459\[265] = zero[5]
-Removing Lhs of wire \I2CM:Net_652\[266] = zero[5]
-Removing Lhs of wire \I2CM:Net_452\[267] = zero[5]
-Removing Lhs of wire \I2CM:Net_676\[268] = zero[5]
-Removing Lhs of wire \I2CM:Net_245\[269] = zero[5]
-Removing Lhs of wire \I2CM:Net_416\[270] = zero[5]
-Removing Lhs of wire \I2CM:Net_654\[271] = zero[5]
-Removing Lhs of wire \I2CM:SCBclock\[274] = \I2CM:Net_847\[264]
-Removing Lhs of wire \I2CM:Net_653\[275] = zero[5]
-Removing Lhs of wire \I2CM:Net_909\[276] = zero[5]
-Removing Lhs of wire \I2CM:Net_663\[277] = zero[5]
-Removing Lhs of wire \I2CM:tmpOE__sda_net_0\[279] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire \I2CM:tmpOE__scl_net_0\[285] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire \I2CM:Net_739\[294] = zero[5]
-Removing Lhs of wire \I2CM:Net_747\[295] = zero[5]
-Removing Lhs of wire tmpOE__LFO_FREQ_IN_net_0[320] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire tmpOE__WAV_FORM_IN_net_0[328] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire tmpOE__LFO_DEPT_IN_net_0[342] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire tmpOE__LED_RED_net_0[348] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire tmpOE__LED_GREEN_net_0[354] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire tmpOE__LED_BLUE_net_0[360] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire tmpOE__LCD_RST_net_0[366] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire \SamplingTimer:Net_81\[372] = Net_145[384]
-Removing Lhs of wire \SamplingTimer:Net_75\[373] = zero[5]
-Removing Lhs of wire \SamplingTimer:Net_69\[374] = tmpOE__IDAC8_OUT_net_0[4]
-Removing Lhs of wire \SamplingTimer:Net_66\[375] = zero[5]
-Removing Lhs of wire \SamplingTimer:Net_82\[376] = zero[5]
-Removing Lhs of wire \SamplingTimer:Net_72\[377] = zero[5]
-Removing Lhs of wire \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\\D\[388] = Net_462[24]
-Removing Lhs of wire \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\\D\[389] = \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\[27]
-Removing Lhs of wire \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\\D\[393] = Net_309[333]
-Removing Lhs of wire \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\\D\[394] = \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\[336]
+Removing Lhs of wire tmpOE__WAV_FORM_PIN_net_0[12] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Rhs of wire Net_454[13] = \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\[346]
+Removing Lhs of wire tmpOE__LFO_FORM_IN_net_0[21] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire \IDAC7:Net_3\[28] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Rhs of wire Net_487[34] = \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\[32]
+Removing Lhs of wire tmpOE__IDAC7_OUT_net_0[39] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire \ADC_SAR_Seq:Net_3107\[120] = zero[5]
+Removing Lhs of wire \ADC_SAR_Seq:Net_3106\[121] = zero[5]
+Removing Lhs of wire \ADC_SAR_Seq:Net_3105\[122] = zero[5]
+Removing Lhs of wire \ADC_SAR_Seq:Net_3104\[123] = zero[5]
+Removing Lhs of wire \ADC_SAR_Seq:Net_3103\[124] = zero[5]
+Removing Lhs of wire \ADC_SAR_Seq:Net_17\[171] = \ADC_SAR_Seq:Net_1845\[46]
+Removing Lhs of wire \ADC_SAR_Seq:Net_3207_1\[193] = zero[5]
+Removing Lhs of wire \ADC_SAR_Seq:Net_3207_0\[194] = zero[5]
+Removing Lhs of wire \ADC_SAR_Seq:Net_3235\[195] = zero[5]
+Removing Lhs of wire tmpOE__WAV_FREQ_IN_net_0[264] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire \I2CM:Net_459\[271] = zero[5]
+Removing Lhs of wire \I2CM:Net_652\[272] = zero[5]
+Removing Lhs of wire \I2CM:Net_452\[273] = zero[5]
+Removing Lhs of wire \I2CM:Net_676\[274] = zero[5]
+Removing Lhs of wire \I2CM:Net_245\[275] = zero[5]
+Removing Lhs of wire \I2CM:Net_416\[276] = zero[5]
+Removing Lhs of wire \I2CM:Net_654\[277] = zero[5]
+Removing Lhs of wire \I2CM:SCBclock\[280] = \I2CM:Net_847\[270]
+Removing Lhs of wire \I2CM:Net_653\[281] = zero[5]
+Removing Lhs of wire \I2CM:Net_909\[282] = zero[5]
+Removing Lhs of wire \I2CM:Net_663\[283] = zero[5]
+Removing Lhs of wire \I2CM:tmpOE__sda_net_0\[285] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire \I2CM:tmpOE__scl_net_0\[291] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire \I2CM:Net_739\[300] = zero[5]
+Removing Lhs of wire \I2CM:Net_747\[301] = zero[5]
+Removing Lhs of wire tmpOE__LFO_FORM_PIN_net_0[324] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire tmpOE__LFO_FREQ_IN_net_0[330] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire tmpOE__WAV_FORM_IN_net_0[338] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire tmpOE__LFO_DEPT_IN_net_0[352] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire tmpOE__LED_RED_net_0[358] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire tmpOE__LED_GREEN_net_0[364] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire tmpOE__LED_BLUE_net_0[370] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire tmpOE__LCD_RST_net_0[376] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire \SamplingTimer:Net_81\[382] = Net_145[394]
+Removing Lhs of wire \SamplingTimer:Net_75\[383] = zero[5]
+Removing Lhs of wire \SamplingTimer:Net_69\[384] = tmpOE__IDAC8_OUT_net_0[4]
+Removing Lhs of wire \SamplingTimer:Net_66\[385] = zero[5]
+Removing Lhs of wire \SamplingTimer:Net_82\[386] = zero[5]
+Removing Lhs of wire \SamplingTimer:Net_72\[387] = zero[5]
+Removing Lhs of wire \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\\D\[397] = Net_462[29]
+Removing Lhs of wire \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\\D\[398] = Net_487[34]
+Removing Lhs of wire \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\\D\[402] = Net_309[343]
+Removing Lhs of wire \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\\D\[403] = Net_454[13]
 
 ------------------------------------------------------
-Aliased 0 equations, 47 wires.
+Aliased 0 equations, 51 wires.
 ------------------------------------------------------
 
 ----------------------------------------------------------
@@ -281,14 +287,14 @@ CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\wa
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\bin/warp.exe
 Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=D:\Users\gizmo\Documents\PSoC\PSoC_PyunPyun\PSoC_PyunPyun.cydsn\PSoC_PyunPyun.cyprj -dcpsoc3 PSoC_PyunPyun.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 0s.895ms
+Warp synthesis phase: Elapsed time ==> 1s.034ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V3.1.0.1722, Family: PSoC3, Started at: Thursday, 12 March 2015 17:20:28
+cyp3fit: V3.1.0.1722, Family: PSoC3, Started at: Sunday, 15 March 2015 00:41:23
 Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=D:\Users\gizmo\Documents\PSoC\PSoC_PyunPyun\PSoC_PyunPyun.cydsn\PSoC_PyunPyun.cyprj -d CY8C4245AXI-483 PSoC_PyunPyun.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.017ms
+Design parsing phase: Elapsed time ==> 0s.018ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
@@ -297,8 +303,8 @@ Removing unused cells resulting from optimization
 Done removing unused cells.
 <CYPRESSTAG name="Global Clock Selection" icon="FILE_RPT_TECHM">
     Fixed Function Clock 8: Automatic-assigning  clock 'SamplingClock'. Signal=Net_145_ff8
+    Fixed Function Clock 7: Automatic-assigning  clock 'ADC_SAR_Seq_intClock'. Signal=\ADC_SAR_Seq:Net_1845_ff7\
     Fixed Function Clock 2: Automatic-assigning  clock 'I2CM_SCBCLK'. Signal=\I2CM:Net_847_ff2\
-    Fixed Function Clock 7: Automatic-assigning  clock 'ADC_SAR_SEQ_intClock'. Signal=\ADC_SAR_SEQ:Net_1845_ff7\
     Digital Clock 0: Automatic-assigning  clock 'LFO_FORM_CLK'. Fanout=1, Signal=Net_463_digital
     Digital Clock 1: Automatic-assigning  clock 'WAV_FORM_CLK'. Fanout=1, Signal=Net_310_digital
 <CYPRESSTAG name="UDB Clock/Enable Remapping Results">
@@ -312,6 +318,8 @@ Done removing unused cells.
         ClockOut: ClockGenBlock:m0s8clockgenblockcell.gen_clk_out_1, EnableOut: Constant 1
 </CYPRESSTAG>
 </CYPRESSTAG>
+ADD: pft.M0040: information: The following 2 pin(s) will be assigned a location by the fitter: LFO_FORM_PIN(0), WAV_FORM_PIN(0)
+
 
 Removing unused cells resulting from optimization
 Done removing unused cells.
@@ -594,7 +602,7 @@ Design Equations
             IO Voltage: 0
         PORT MAP (
             pa_out => LFO_DEPT_IN(0)__PA ,
-            analog_term => \ADC_SAR_SEQ:mux_bus_plus_2\ ,
+            analog_term => \ADC_SAR_Seq:mux_bus_plus_2\ ,
             pad => LFO_DEPT_IN(0)_PAD );
         Properties:
         {
@@ -639,6 +647,42 @@ Design Equations
         {
         }
 
+    Pin : Name = LFO_FORM_PIN(0)
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: DIGITAL, ROUTABLE
+            Initial Value: 1
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => LFO_FORM_PIN(0)__PA ,
+            input => Net_487 ,
+            pad => LFO_FORM_PIN(0)_PAD );
+
     Pin : Name = LFO_FREQ_IN(0)
         Attributes:
             In Group/Port: True
@@ -672,7 +716,7 @@ Design Equations
             IO Voltage: 0
         PORT MAP (
             pa_out => LFO_FREQ_IN(0)__PA ,
-            analog_term => \ADC_SAR_SEQ:mux_bus_plus_1\ ,
+            analog_term => \ADC_SAR_Seq:mux_bus_plus_1\ ,
             pad => LFO_FREQ_IN(0)_PAD );
         Properties:
         {
@@ -717,6 +761,42 @@ Design Equations
         {
         }
 
+    Pin : Name = WAV_FORM_PIN(0)
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: EITHER
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: ANY
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO RefSel: VCC_IO
+            Required Capabilitites: DIGITAL, ROUTABLE
+            Initial Value: 1
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => WAV_FORM_PIN(0)__PA ,
+            input => Net_454 ,
+            pad => WAV_FORM_PIN(0)_PAD );
+
     Pin : Name = WAV_FREQ_IN(0)
         Attributes:
             In Group/Port: True
@@ -750,7 +830,7 @@ Design Equations
             IO Voltage: 0
         PORT MAP (
             pa_out => WAV_FREQ_IN(0)__PA ,
-            analog_term => \ADC_SAR_SEQ:mux_bus_plus_0\ ,
+            analog_term => \ADC_SAR_Seq:mux_bus_plus_0\ ,
             pad => WAV_FREQ_IN(0)_PAD );
         Properties:
         {
@@ -840,57 +920,7 @@ Design Equations
     Macrocell listing
     ------------------------------------------------------------
 
-    MacroCell: Name=Net_314, Mode=(D-Register)
-        Total # of inputs        : 2
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_310_digital) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\ * 
-              !\WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\
-        );
-        Output = Net_314 (fanout=1)
-
-    MacroCell: Name=Net_467, Mode=(D-Register)
-        Total # of inputs        : 2
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_463_digital) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\ * 
-              !\LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\
-        );
-        Output = Net_467 (fanout=1)
-
-    MacroCell: Name=\LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\, Mode=(D-Register)
-        Total # of inputs        : 1
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_463_digital) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              !Net_468
-        );
-        Output = \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\ (fanout=2)
-
-    MacroCell: Name=\LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\, Mode=(D-Register)
-        Total # of inputs        : 1
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_463_digital) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\
-        );
-        Output = \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\ (fanout=1)
-
-    MacroCell: Name=\WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\, Mode=(D-Register)
+    MacroCell: Name=Net_454, Mode=(D-Register)
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
@@ -900,19 +930,19 @@ Design Equations
         (
               !Net_345
         );
-        Output = \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\ (fanout=2)
+        Output = Net_454 (fanout=1)
 
-    MacroCell: Name=\WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\, Mode=(D-Register)
+    MacroCell: Name=Net_487, Mode=(D-Register)
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_310_digital) => Global
+            Clock  = (Net_463_digital) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
-              \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\
+              !Net_468
         );
-        Output = \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\ (fanout=1)
+        Output = Net_487 (fanout=1)
 
     MacroCell: Name=__ONE__, Mode=(Combinatorial)
         Total # of inputs        : 0
@@ -944,14 +974,6 @@ Design Equations
     Interrupt listing
     ------------------------------------------------------------
 
-    interrupt: Name =LFO_FORM_ISR
-        PORT MAP (
-            interrupt => Net_467 );
-        Properties:
-        {
-            int_type = "10"
-        }
-
     interrupt: Name =TimerISR
         PORT MAP (
             interrupt => Net_405 );
@@ -960,17 +982,9 @@ Design Equations
             int_type = "10"
         }
 
-    interrupt: Name =WAV_FORM_ISR
+    interrupt: Name =\ADC_SAR_Seq:IRQ\
         PORT MAP (
-            interrupt => Net_314 );
-        Properties:
-        {
-            int_type = "10"
-        }
-
-    interrupt: Name =\ADC_SAR_SEQ:IRQ\
-        PORT MAP (
-            interrupt => \ADC_SAR_SEQ:Net_3112\ );
+            interrupt => \ADC_SAR_Seq:Net_3112\ );
         Properties:
         {
             int_type = "10"
@@ -994,14 +1008,14 @@ Technology mapping summary
 Resource Type                 : Used : Free :  Max :  % Used
 ============================================================
 Digital clock dividers        :    2 :    2 :    4 :  50.00%
-Pins                          :   15 :   21 :   36 :  41.67%
-UDB Macrocells                :    7 :   25 :   32 :  21.88%
-UDB Unique Pterms             :    6 :   58 :   64 :   9.38%
-UDB Total Pterms              :    6 :      :      : 
+Pins                          :   17 :   19 :   36 :  47.22%
+UDB Macrocells                :    3 :   29 :   32 :   9.38%
+UDB Unique Pterms             :    2 :   62 :   64 :   3.13%
+UDB Total Pterms              :    2 :      :      : 
 UDB Datapath Cells            :    0 :    4 :    4 :   0.00%
 UDB Status Cells              :    0 :    4 :    4 :   0.00%
 UDB Control Cells             :    0 :    4 :    4 :   0.00%
-Interrupts                    :    5 :   27 :   32 :  15.63%
+Interrupts                    :    3 :   29 :   32 :   9.38%
 Comparator/Opamp Fixed Blocks :    0 :    2 :    2 :   0.00%
 SAR Fixed Blocks              :    1 :    0 :    1 : 100.00%
 CSD Fixed Blocks              :    0 :    1 :    1 :   0.00%
@@ -1014,20 +1028,20 @@ TCPWM Blocks                  :    1 :    3 :    4 :  25.00%
 Serial Communication Blocks   :    1 :    1 :    2 :  50.00%
 Segment LCD Blocks            :    0 :    1 :    1 :   0.00%
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.489ms
-Tech mapping phase: Elapsed time ==> 0s.514ms
+Technology Mapping: Elapsed time ==> 0s.578ms
+Tech mapping phase: Elapsed time ==> 0s.670ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 <CYPRESSTAG name="Analog Placement">
-Elapsed time ==> 0.0110517s
+Elapsed time ==> 0.0109411s
 </CYPRESSTAG>
-Analog Placement phase: Elapsed time ==> 0s.028ms
+Analog Placement phase: Elapsed time ==> 0s.058ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 <CYPRESSTAG name="Analog Routing">
-Route success=True, Iterations=1 Elapsed=0.0105231 secs
+Route success=True, Iterations=1 Elapsed=0.0092229 secs
 </CYPRESSTAG>
-Analog Routing phase: Elapsed time ==> 0s.010ms
+Analog Routing phase: Elapsed time ==> 0s.009ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Code Generation">
 ============ Analog Final Answer Routes ============
@@ -1047,41 +1061,41 @@ Map of net to items {
     P3_P45
     p3_5
   }
-  Net: \ADC_SAR_SEQ:Net_2580\ {
+  Net: \ADC_SAR_Seq:Net_2580\ {
   }
-  Net: \ADC_SAR_SEQ:Net_3016\ {
+  Net: \ADC_SAR_Seq:Net_3016\ {
   }
-  Net: \ADC_SAR_SEQ:Net_3046\ {
+  Net: \ADC_SAR_Seq:Net_3046\ {
   }
-  Net: \ADC_SAR_SEQ:Net_8\ {
+  Net: \ADC_SAR_Seq:Net_8\ {
   }
-  Net: \ADC_SAR_SEQ:mux_bus_minus_0\ {
+  Net: \ADC_SAR_Seq:mux_bus_minus_0\ {
   }
-  Net: \ADC_SAR_SEQ:mux_bus_minus_1\ {
+  Net: \ADC_SAR_Seq:mux_bus_minus_1\ {
   }
-  Net: \ADC_SAR_SEQ:mux_bus_minus_2\ {
+  Net: \ADC_SAR_Seq:mux_bus_minus_2\ {
   }
-  Net: \ADC_SAR_SEQ:mux_bus_plus_0\ {
+  Net: \ADC_SAR_Seq:mux_bus_plus_0\ {
     p2_0
   }
-  Net: \ADC_SAR_SEQ:mux_bus_plus_1\ {
+  Net: \ADC_SAR_Seq:mux_bus_plus_1\ {
     p2_1
   }
-  Net: \ADC_SAR_SEQ:mux_bus_plus_2\ {
+  Net: \ADC_SAR_Seq:mux_bus_plus_2\ {
     p2_2
   }
-  Net: \ADC_SAR_SEQ:Net_2020\ {
+  Net: \ADC_SAR_Seq:Net_2020\ {
     sarmux_vplus
   }
-  Net: AMuxNet::\ADC_SAR_SEQ:cy_psoc4_sarmux_8\_CYAMUXSIDE_A {
+  Net: AMuxNet::\ADC_SAR_Seq:cy_psoc4_sarmux_8\_CYAMUXSIDE_A {
     SARMUX0_sw0
     SARMUX0_sw1
     SARMUX0_sw2
   }
-  Net: \ADC_SAR_SEQ:Net_124\ {
+  Net: \ADC_SAR_Seq:Net_124\ {
     sarmux_vminus
   }
-  Net: AMuxNet::\ADC_SAR_SEQ:cy_psoc4_sarmux_8\_CYAMUXSIDE_B {
+  Net: AMuxNet::\ADC_SAR_Seq:cy_psoc4_sarmux_8\_CYAMUXSIDE_B {
   }
 }
 Map of item to net {
@@ -1095,24 +1109,24 @@ Map of item to net {
   amuxbusa                                         -> Net_3
   P3_P45                                           -> Net_3
   p3_5                                             -> Net_3
-  p2_0                                             -> \ADC_SAR_SEQ:mux_bus_plus_0\
-  p2_1                                             -> \ADC_SAR_SEQ:mux_bus_plus_1\
-  p2_2                                             -> \ADC_SAR_SEQ:mux_bus_plus_2\
-  sarmux_vplus                                     -> \ADC_SAR_SEQ:Net_2020\
-  SARMUX0_sw0                                      -> AMuxNet::\ADC_SAR_SEQ:cy_psoc4_sarmux_8\_CYAMUXSIDE_A
-  SARMUX0_sw1                                      -> AMuxNet::\ADC_SAR_SEQ:cy_psoc4_sarmux_8\_CYAMUXSIDE_A
-  SARMUX0_sw2                                      -> AMuxNet::\ADC_SAR_SEQ:cy_psoc4_sarmux_8\_CYAMUXSIDE_A
-  sarmux_vminus                                    -> \ADC_SAR_SEQ:Net_124\
+  p2_0                                             -> \ADC_SAR_Seq:mux_bus_plus_0\
+  p2_1                                             -> \ADC_SAR_Seq:mux_bus_plus_1\
+  p2_2                                             -> \ADC_SAR_Seq:mux_bus_plus_2\
+  sarmux_vplus                                     -> \ADC_SAR_Seq:Net_2020\
+  SARMUX0_sw0                                      -> AMuxNet::\ADC_SAR_Seq:cy_psoc4_sarmux_8\_CYAMUXSIDE_A
+  SARMUX0_sw1                                      -> AMuxNet::\ADC_SAR_Seq:cy_psoc4_sarmux_8\_CYAMUXSIDE_A
+  SARMUX0_sw2                                      -> AMuxNet::\ADC_SAR_Seq:cy_psoc4_sarmux_8\_CYAMUXSIDE_A
+  sarmux_vminus                                    -> \ADC_SAR_Seq:Net_124\
 }
 Mux Info {
-  Mux: \ADC_SAR_SEQ:cy_psoc4_sarmux_8\_CYAMUXSIDE_A {
-     Mouth: \ADC_SAR_SEQ:Net_2020\
-     Guts:  AMuxNet::\ADC_SAR_SEQ:cy_psoc4_sarmux_8\_CYAMUXSIDE_A
+  Mux: \ADC_SAR_Seq:cy_psoc4_sarmux_8\_CYAMUXSIDE_A {
+     Mouth: \ADC_SAR_Seq:Net_2020\
+     Guts:  AMuxNet::\ADC_SAR_Seq:cy_psoc4_sarmux_8\_CYAMUXSIDE_A
      IsSingleSwitching: False
      IsStaticSwitching: False
      IsAtMostOneSwitch: True
     Arm: 0 {
-      Net:   \ADC_SAR_SEQ:mux_bus_plus_0\
+      Net:   \ADC_SAR_Seq:mux_bus_plus_0\
       Outer: SARMUX0_sw0
       Inner: __open__
       Path {
@@ -1121,7 +1135,7 @@ Mux Info {
       }
     }
     Arm: 1 {
-      Net:   \ADC_SAR_SEQ:mux_bus_plus_1\
+      Net:   \ADC_SAR_Seq:mux_bus_plus_1\
       Outer: SARMUX0_sw1
       Inner: __open__
       Path {
@@ -1130,7 +1144,7 @@ Mux Info {
       }
     }
     Arm: 2 {
-      Net:   \ADC_SAR_SEQ:mux_bus_plus_2\
+      Net:   \ADC_SAR_Seq:mux_bus_plus_2\
       Outer: SARMUX0_sw2
       Inner: __open__
       Path {
@@ -1139,28 +1153,28 @@ Mux Info {
       }
     }
   }
-  Mux: \ADC_SAR_SEQ:cy_psoc4_sarmux_8\_CYAMUXSIDE_B {
-     Mouth: \ADC_SAR_SEQ:Net_124\
-     Guts:  AMuxNet::\ADC_SAR_SEQ:cy_psoc4_sarmux_8\_CYAMUXSIDE_B
+  Mux: \ADC_SAR_Seq:cy_psoc4_sarmux_8\_CYAMUXSIDE_B {
+     Mouth: \ADC_SAR_Seq:Net_124\
+     Guts:  AMuxNet::\ADC_SAR_Seq:cy_psoc4_sarmux_8\_CYAMUXSIDE_B
      IsSingleSwitching: False
      IsStaticSwitching: False
      IsAtMostOneSwitch: True
     Arm: 0 {
-      Net:   \ADC_SAR_SEQ:Net_2580\
+      Net:   \ADC_SAR_Seq:Net_2580\
       Outer: __open__
       Inner: __open__
       Path {
       }
     }
     Arm: 1 {
-      Net:   \ADC_SAR_SEQ:Net_2580\
+      Net:   \ADC_SAR_Seq:Net_2580\
       Outer: __open__
       Inner: __open__
       Path {
       }
     }
     Arm: 2 {
-      Net:   \ADC_SAR_SEQ:Net_2580\
+      Net:   \ADC_SAR_Seq:Net_2580\
       Outer: __open__
       Inner: __open__
       Path {
@@ -1168,7 +1182,7 @@ Mux Info {
     }
   }
 }
-Analog Code Generation phase: Elapsed time ==> 0s.116ms
+Analog Code Generation phase: Elapsed time ==> 0s.093ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
@@ -1189,9 +1203,9 @@ PLD Packing Summary
 
         PLD Resource Type :     Average/LAB
     =======================================
-                   Inputs :            3.00
-                   Pterms :            3.00
-               Macrocells :            3.50
+                   Inputs :            1.00
+                   Pterms :            1.00
+               Macrocells :            1.50
 </CYPRESSTAG>
 <CYPRESSTAG name="Packed PLD Contents">
 Packed PLD Contents not displayed at this verbose level.</CYPRESSTAG>
@@ -1203,10 +1217,10 @@ PLD Packing: Elapsed time ==> 0s.001ms
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.013ms
+Partitioning: Elapsed time ==> 0s.014ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Simulated Annealing">
-Annealing: Elapsed time ==> 0s.002ms
+Annealing: Elapsed time ==> 0s.001ms
 <CYPRESSTAG name="Simulated Annealing Results">
 The seed used for moves was 114161200.
 Inital cost was 51, final cost is 51 (0.00% improvement).</CYPRESSTAG>
@@ -1219,7 +1233,7 @@ Final Placement Summary
 
        Resource Type :      Count : Avg Inputs : Avg Outputs
     ========================================================
-                 UDB :          1 :       6.00 :       7.00
+                 UDB :          1 :       2.00 :       3.00
 <CYPRESSTAG name="Final Placement Details">
 <CYPRESSTAG name="Component Details">
 
@@ -1230,40 +1244,9 @@ UDB [UDB=(0,0)] is empty.
 UDB [UDB=(0,1)] is empty.
 UDB [UDB=(1,0)] is empty.
 UDB [UDB=(1,1)] contents:
-LAB@[UDB=(1,1)][LB=0] #macrocells=4, #inputs=3, #pterms=3
+LAB@[UDB=(1,1)][LB=0] #macrocells=2, #inputs=1, #pterms=1
 {
-    [McSlotId=0]:     MacroCell: Name=Net_467, Mode=(D-Register) @ [UDB=(1,1)][LB=0][MC=0]
-        Total # of inputs        : 2
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_463_digital) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\ * 
-              !\LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\
-        );
-        Output = Net_467 (fanout=1)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=1]:     MacroCell: Name=\LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\, Mode=(D-Register) @ [UDB=(1,1)][LB=0][MC=1]
-        Total # of inputs        : 1
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_463_digital) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\
-        );
-        Output = \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\ (fanout=1)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=2]:     MacroCell: Name=\LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\, Mode=(D-Register) @ [UDB=(1,1)][LB=0][MC=2]
+    [McSlotId=0]:     MacroCell: Name=Net_487, Mode=(D-Register) @ [UDB=(1,1)][LB=0][MC=0]
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
@@ -1273,12 +1256,12 @@ LAB@[UDB=(1,1)][LB=0] #macrocells=4, #inputs=3, #pterms=3
         (
               !Net_468
         );
-        Output = \LFO_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\ (fanout=2)
+        Output = Net_487 (fanout=1)
         Properties               : 
         {
         }
 
-    [McSlotId=3]:     MacroCell: Name=__ONE__, Mode=(Combinatorial) @ [UDB=(1,1)][LB=0][MC=3]
+    [McSlotId=1]:     MacroCell: Name=__ONE__, Mode=(Combinatorial) @ [UDB=(1,1)][LB=0][MC=1]
         Total # of inputs        : 0
         Total # of product terms : 0
             Clock Enable: True
@@ -1290,42 +1273,14 @@ LAB@[UDB=(1,1)][LB=0] #macrocells=4, #inputs=3, #pterms=3
         Properties               : 
         {
         }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
 }
 
-LAB@[UDB=(1,1)][LB=1] #macrocells=3, #inputs=3, #pterms=3
+LAB@[UDB=(1,1)][LB=1] #macrocells=1, #inputs=1, #pterms=1
 {
-    [McSlotId=0]:     MacroCell: Name=Net_314, Mode=(D-Register) @ [UDB=(1,1)][LB=1][MC=0]
-        Total # of inputs        : 2
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_310_digital) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\ * 
-              !\WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\
-        );
-        Output = Net_314 (fanout=1)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=1]:     MacroCell: Name=\WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\, Mode=(D-Register) @ [UDB=(1,1)][LB=1][MC=1]
-        Total # of inputs        : 1
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_310_digital) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\
-        );
-        Output = \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_1\ (fanout=1)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=2]:     MacroCell: Name=\WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\, Mode=(D-Register) @ [UDB=(1,1)][LB=1][MC=2]
+    [McSlotId=0]:     MacroCell: Name=Net_454, Mode=(D-Register) @ [UDB=(1,1)][LB=1][MC=0]
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
@@ -1335,31 +1290,17 @@ LAB@[UDB=(1,1)][LB=1] #macrocells=3, #inputs=3, #pterms=3
         (
               !Net_345
         );
-        Output = \WAV_FORM_Debouncer:DEBOUNCER[0]:d_sync_0\ (fanout=2)
+        Output = Net_454 (fanout=1)
         Properties               : 
         {
         }
 
+    [McSlotId=1]: (empty)
+    [McSlotId=2]: (empty)
     [McSlotId=3]: (empty)
 }
 
 Intr hod @ [IntrHod=(0)]: 
-  Intr@ [IntrHod=(0)][IntrId=(0)] 
-    interrupt: Name =LFO_FORM_ISR
-        PORT MAP (
-            interrupt => Net_467 );
-        Properties:
-        {
-            int_type = "10"
-        }
-  Intr@ [IntrHod=(0)][IntrId=(2)] 
-    interrupt: Name =WAV_FORM_ISR
-        PORT MAP (
-            interrupt => Net_314 );
-        Properties:
-        {
-            int_type = "10"
-        }
   Intr@ [IntrHod=(0)][IntrId=(10)] 
     interrupt: Name =\I2CM:SCB_IRQ\
         PORT MAP (
@@ -1369,9 +1310,9 @@ Intr hod @ [IntrHod=(0)]:
             int_type = "10"
         }
   Intr@ [IntrHod=(0)][IntrId=(14)] 
-    interrupt: Name =\ADC_SAR_SEQ:IRQ\
+    interrupt: Name =\ADC_SAR_Seq:IRQ\
         PORT MAP (
-            interrupt => \ADC_SAR_SEQ:Net_3112\ );
+            interrupt => \ADC_SAR_Seq:Net_3112\ );
         Properties:
         {
             int_type = "10"
@@ -1385,6 +1326,86 @@ Intr hod @ [IntrHod=(0)]:
             int_type = "10"
         }
 Port 0 contains the following IO cells:
+[IoId=0]: 
+Pin : Name = LFO_FORM_PIN(0)
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: DIGITAL, ROUTABLE
+        Initial Value: 1
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => LFO_FORM_PIN(0)__PA ,
+        input => Net_487 ,
+        pad => LFO_FORM_PIN(0)_PAD );
+    Properties:
+    {
+    }
+
+[IoId=1]: 
+Pin : Name = WAV_FORM_PIN(0)
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: ANY
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO RefSel: VCC_IO
+        Required Capabilitites: DIGITAL, ROUTABLE
+        Initial Value: 1
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => WAV_FORM_PIN(0)__PA ,
+        input => Net_454 ,
+        pad => WAV_FORM_PIN(0)_PAD );
+    Properties:
+    {
+    }
+
 [IoId=2]: 
 Pin : Name = LED_GREEN(0)
     Attributes:
@@ -1579,7 +1600,7 @@ Pin : Name = WAV_FREQ_IN(0)
         IO Voltage: 0
     PORT MAP (
         pa_out => WAV_FREQ_IN(0)__PA ,
-        analog_term => \ADC_SAR_SEQ:mux_bus_plus_0\ ,
+        analog_term => \ADC_SAR_Seq:mux_bus_plus_0\ ,
         pad => WAV_FREQ_IN(0)_PAD );
     Properties:
     {
@@ -1619,7 +1640,7 @@ Pin : Name = LFO_FREQ_IN(0)
         IO Voltage: 0
     PORT MAP (
         pa_out => LFO_FREQ_IN(0)__PA ,
-        analog_term => \ADC_SAR_SEQ:mux_bus_plus_1\ ,
+        analog_term => \ADC_SAR_Seq:mux_bus_plus_1\ ,
         pad => LFO_FREQ_IN(0)_PAD );
     Properties:
     {
@@ -1659,7 +1680,7 @@ Pin : Name = LFO_DEPT_IN(0)
         IO Voltage: 0
     PORT MAP (
         pa_out => LFO_DEPT_IN(0)__PA ,
-        analog_term => \ADC_SAR_SEQ:mux_bus_plus_2\ ,
+        analog_term => \ADC_SAR_Seq:mux_bus_plus_2\ ,
         pad => LFO_DEPT_IN(0)_PAD );
     Properties:
     {
@@ -1919,8 +1940,8 @@ Clock group 0:
             imo => ClockBlock_IMO ,
             hfclk => ClockBlock_HFCLK ,
             ff_div_8 => Net_145_ff8 ,
+            ff_div_7 => \ADC_SAR_Seq:Net_1845_ff7\ ,
             ff_div_2 => \I2CM:Net_847_ff2\ ,
-            ff_div_7 => \ADC_SAR_SEQ:Net_1845_ff7\ ,
             udb_div_0 => dclk_to_genclk ,
             udb_div_1 => dclk_to_genclk_1 );
         Properties:
@@ -2002,34 +2023,34 @@ Comparator/Opamp Fixed Block group 0: empty
 Temperature Sensor group 0: empty
 SAR Fixed Block group 0: 
     PSoC4 SAR Fixed Block @ [FFB(SARADC,0)]:
-        p4sarcell: Name =\ADC_SAR_SEQ:cy_psoc4_sar\
+        p4sarcell: Name =\ADC_SAR_Seq:cy_psoc4_sar\
             PORT MAP (
-                vplus => \ADC_SAR_SEQ:Net_2020\ ,
-                vminus => \ADC_SAR_SEQ:Net_124\ ,
-                vref => \ADC_SAR_SEQ:Net_8\ ,
-                ext_vref => \ADC_SAR_SEQ:Net_43\ ,
-                clock => \ADC_SAR_SEQ:Net_1845_ff7\ ,
+                vplus => \ADC_SAR_Seq:Net_2020\ ,
+                vminus => \ADC_SAR_Seq:Net_124\ ,
+                vref => \ADC_SAR_Seq:Net_8\ ,
+                ext_vref => \ADC_SAR_Seq:Net_43\ ,
+                clock => \ADC_SAR_Seq:Net_1845_ff7\ ,
                 sample_done => Net_543 ,
-                chan_id_valid => \ADC_SAR_SEQ:Net_3108\ ,
-                chan_id_3 => \ADC_SAR_SEQ:Net_3109_3\ ,
-                chan_id_2 => \ADC_SAR_SEQ:Net_3109_2\ ,
-                chan_id_1 => \ADC_SAR_SEQ:Net_3109_1\ ,
-                chan_id_0 => \ADC_SAR_SEQ:Net_3109_0\ ,
-                data_valid => \ADC_SAR_SEQ:Net_3110\ ,
-                data_11 => \ADC_SAR_SEQ:Net_3111_11\ ,
-                data_10 => \ADC_SAR_SEQ:Net_3111_10\ ,
-                data_9 => \ADC_SAR_SEQ:Net_3111_9\ ,
-                data_8 => \ADC_SAR_SEQ:Net_3111_8\ ,
-                data_7 => \ADC_SAR_SEQ:Net_3111_7\ ,
-                data_6 => \ADC_SAR_SEQ:Net_3111_6\ ,
-                data_5 => \ADC_SAR_SEQ:Net_3111_5\ ,
-                data_4 => \ADC_SAR_SEQ:Net_3111_4\ ,
-                data_3 => \ADC_SAR_SEQ:Net_3111_3\ ,
-                data_2 => \ADC_SAR_SEQ:Net_3111_2\ ,
-                data_1 => \ADC_SAR_SEQ:Net_3111_1\ ,
-                data_0 => \ADC_SAR_SEQ:Net_3111_0\ ,
+                chan_id_valid => \ADC_SAR_Seq:Net_3108\ ,
+                chan_id_3 => \ADC_SAR_Seq:Net_3109_3\ ,
+                chan_id_2 => \ADC_SAR_Seq:Net_3109_2\ ,
+                chan_id_1 => \ADC_SAR_Seq:Net_3109_1\ ,
+                chan_id_0 => \ADC_SAR_Seq:Net_3109_0\ ,
+                data_valid => \ADC_SAR_Seq:Net_3110\ ,
+                data_11 => \ADC_SAR_Seq:Net_3111_11\ ,
+                data_10 => \ADC_SAR_Seq:Net_3111_10\ ,
+                data_9 => \ADC_SAR_Seq:Net_3111_9\ ,
+                data_8 => \ADC_SAR_Seq:Net_3111_8\ ,
+                data_7 => \ADC_SAR_Seq:Net_3111_7\ ,
+                data_6 => \ADC_SAR_Seq:Net_3111_6\ ,
+                data_5 => \ADC_SAR_Seq:Net_3111_5\ ,
+                data_4 => \ADC_SAR_Seq:Net_3111_4\ ,
+                data_3 => \ADC_SAR_Seq:Net_3111_3\ ,
+                data_2 => \ADC_SAR_Seq:Net_3111_2\ ,
+                data_1 => \ADC_SAR_Seq:Net_3111_1\ ,
+                data_0 => \ADC_SAR_Seq:Net_3111_0\ ,
                 eos_intr => Net_544 ,
-                irq => \ADC_SAR_SEQ:Net_3112\ );
+                irq => \ADC_SAR_Seq:Net_3112\ );
             Properties:
             {
                 cy_registers = ""
@@ -2052,17 +2073,17 @@ ANAPUMP group 0: empty
 
 Blocks not positioned by the digital component placer:
     PSoC4 SAR Mux @ <No Location>: 
-        p4sarmuxcell: Name =\ADC_SAR_SEQ:cy_psoc4_sarmux_8\
+        p4sarmuxcell: Name =\ADC_SAR_Seq:cy_psoc4_sarmux_8\
             PORT MAP (
-                muxin_plus_2 => \ADC_SAR_SEQ:mux_bus_plus_2\ ,
-                muxin_plus_1 => \ADC_SAR_SEQ:mux_bus_plus_1\ ,
-                muxin_plus_0 => \ADC_SAR_SEQ:mux_bus_plus_0\ ,
-                muxin_minus_2 => \ADC_SAR_SEQ:mux_bus_minus_2\ ,
-                muxin_minus_1 => \ADC_SAR_SEQ:mux_bus_minus_1\ ,
-                muxin_minus_0 => \ADC_SAR_SEQ:mux_bus_minus_0\ ,
-                cmn_neg => \ADC_SAR_SEQ:Net_2580\ ,
-                vout_plus => \ADC_SAR_SEQ:Net_2020\ ,
-                vout_minus => \ADC_SAR_SEQ:Net_124\ );
+                muxin_plus_2 => \ADC_SAR_Seq:mux_bus_plus_2\ ,
+                muxin_plus_1 => \ADC_SAR_Seq:mux_bus_plus_1\ ,
+                muxin_plus_0 => \ADC_SAR_Seq:mux_bus_plus_0\ ,
+                muxin_minus_2 => \ADC_SAR_Seq:mux_bus_minus_2\ ,
+                muxin_minus_1 => \ADC_SAR_Seq:mux_bus_minus_1\ ,
+                muxin_minus_0 => \ADC_SAR_Seq:mux_bus_minus_0\ ,
+                cmn_neg => \ADC_SAR_Seq:Net_2580\ ,
+                vout_plus => \ADC_SAR_Seq:Net_2020\ ,
+                vout_minus => \ADC_SAR_Seq:Net_124\ );
             Properties:
             {
                 cy_registers = ""
@@ -2075,46 +2096,48 @@ Blocks not positioned by the digital component placer:
 ------------------------------------------------------------
 Port Configuration report
 ------------------------------------------------------------
-     |     |       | Interrupt |                  |                | 
-Port | Pin | Fixed |      Type |       Drive Mode |           Name | Connections
------+-----+-------+-----------+------------------+----------------+-------------------------------------
-   0 |   2 |     * |      NONE |         CMOS_OUT |   LED_GREEN(0) | 
-     |   3 |     * |      NONE |         CMOS_OUT |    LED_BLUE(0) | 
------+-----+-------+-----------+------------------+----------------+-------------------------------------
-   1 |   0 |     * |      NONE |      HI_Z_ANALOG |   IDAC7_OUT(0) | In(__ONE__), Analog(Net_203)
-     |   6 |     * |      NONE |         CMOS_OUT |     LED_RED(0) | 
------+-----+-------+-----------+------------------+----------------+-------------------------------------
-   2 |   0 |     * |      NONE |      HI_Z_ANALOG | WAV_FREQ_IN(0) | Analog(\ADC_SAR_SEQ:mux_bus_plus_0\)
-     |   1 |     * |      NONE |      HI_Z_ANALOG | LFO_FREQ_IN(0) | Analog(\ADC_SAR_SEQ:mux_bus_plus_1\)
-     |   2 |     * |      NONE |      HI_Z_ANALOG | LFO_DEPT_IN(0) | Analog(\ADC_SAR_SEQ:mux_bus_plus_2\)
-     |   3 |     * |      NONE |      RES_PULL_UP | LFO_FORM_IN(0) | FB(Net_468)
-     |   4 |     * |      NONE |      RES_PULL_UP | WAV_FORM_IN(0) | FB(Net_345)
-     |   6 |     * |      NONE |         CMOS_OUT |     LCD_RST(0) | 
------+-----+-------+-----------+------------------+----------------+-------------------------------------
-   3 |   5 |     * |      NONE |      HI_Z_ANALOG |   IDAC8_OUT(0) | In(__ONE__), Analog(Net_3)
------+-----+-------+-----------+------------------+----------------+-------------------------------------
-   4 |   0 |     * |      NONE |    OPEN_DRAIN_LO |  \I2CM:scl(0)\ | FB(\I2CM:Net_580\)
-     |   1 |     * |      NONE |    OPEN_DRAIN_LO |  \I2CM:sda(0)\ | FB(\I2CM:Net_581\)
----------------------------------------------------------------------------------------------------------
+     |     |       | Interrupt |                  |                 | 
+Port | Pin | Fixed |      Type |       Drive Mode |            Name | Connections
+-----+-----+-------+-----------+------------------+-----------------+-------------------------------------
+   0 |   0 |       |      NONE |         CMOS_OUT | LFO_FORM_PIN(0) | In(Net_487)
+     |   1 |       |      NONE |         CMOS_OUT | WAV_FORM_PIN(0) | In(Net_454)
+     |   2 |     * |      NONE |         CMOS_OUT |    LED_GREEN(0) | 
+     |   3 |     * |      NONE |         CMOS_OUT |     LED_BLUE(0) | 
+-----+-----+-------+-----------+------------------+-----------------+-------------------------------------
+   1 |   0 |     * |      NONE |      HI_Z_ANALOG |    IDAC7_OUT(0) | In(__ONE__), Analog(Net_203)
+     |   6 |     * |      NONE |         CMOS_OUT |      LED_RED(0) | 
+-----+-----+-------+-----------+------------------+-----------------+-------------------------------------
+   2 |   0 |     * |      NONE |      HI_Z_ANALOG |  WAV_FREQ_IN(0) | Analog(\ADC_SAR_Seq:mux_bus_plus_0\)
+     |   1 |     * |      NONE |      HI_Z_ANALOG |  LFO_FREQ_IN(0) | Analog(\ADC_SAR_Seq:mux_bus_plus_1\)
+     |   2 |     * |      NONE |      HI_Z_ANALOG |  LFO_DEPT_IN(0) | Analog(\ADC_SAR_Seq:mux_bus_plus_2\)
+     |   3 |     * |      NONE |      RES_PULL_UP |  LFO_FORM_IN(0) | FB(Net_468)
+     |   4 |     * |      NONE |      RES_PULL_UP |  WAV_FORM_IN(0) | FB(Net_345)
+     |   6 |     * |      NONE |         CMOS_OUT |      LCD_RST(0) | 
+-----+-----+-------+-----------+------------------+-----------------+-------------------------------------
+   3 |   5 |     * |      NONE |      HI_Z_ANALOG |    IDAC8_OUT(0) | In(__ONE__), Analog(Net_3)
+-----+-----+-------+-----------+------------------+-----------------+-------------------------------------
+   4 |   0 |     * |      NONE |    OPEN_DRAIN_LO |   \I2CM:scl(0)\ | FB(\I2CM:Net_580\)
+     |   1 |     * |      NONE |    OPEN_DRAIN_LO |   \I2CM:sda(0)\ | FB(\I2CM:Net_581\)
+----------------------------------------------------------------------------------------------------------
 </CYPRESSTAG>
 </CYPRESSTAG>
 </CYPRESSTAG>
 Digital component placer commit/Report: Elapsed time ==> 0s.002ms
-Digital Placement phase: Elapsed time ==> 0s.425ms
+Digital Placement phase: Elapsed time ==> 0s.455ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 Routing successful.
-Digital Routing phase: Elapsed time ==> 0s.438ms
+Digital Routing phase: Elapsed time ==> 0s.458ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream and API generation">
-Bitstream and API generation phase: Elapsed time ==> 0s.072ms
+Bitstream and API generation phase: Elapsed time ==> 0s.090ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream verification">
-Bitstream verification phase: Elapsed time ==> 0s.033ms
+Bitstream verification phase: Elapsed time ==> 0s.027ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in PSoC_PyunPyun_timing.html.
-Static timing analysis phase: Elapsed time ==> 0s.182ms
+Static timing analysis phase: Elapsed time ==> 0s.197ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
@@ -2122,9 +2145,9 @@ Data reporting phase: Elapsed time ==> 0s.000ms
 <CYPRESSTAG name="Database update...">
 Design database save phase: Elapsed time ==> 0s.149ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 2s.003ms
+cydsfit: Elapsed time ==> 2s.243ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 2s.041ms
-API generation phase: Elapsed time ==> 0s.744ms
+Fitter phase: Elapsed time ==> 2s.283ms
+API generation phase: Elapsed time ==> 0s.831ms
 Dependency generation phase: Elapsed time ==> 0s.008ms
 Cleanup phase: Elapsed time ==> 0s.000ms
