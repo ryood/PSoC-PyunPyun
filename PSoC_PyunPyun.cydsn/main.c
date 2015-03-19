@@ -63,9 +63,17 @@
 * 大域変数
 ****************************************/
 
+/* 波形パラメーター */
+volatile double waveFrequency;
+volatile double lfoFrequency;
+volatile uint8 lfoAmount;
+
 /* DDS用変数 */
 volatile uint32 phaseRegister;
 volatile uint32 tuningWord;
+
+volatile uint32 lfoPhaseRegister;
+volatile uint32 lfoTuningWord;
                 
 /* 入力デバイス用変数 */                
 int16 adcResult[ADC_SAR_Seq_TOTAL_CHANNELS_NUM];
@@ -174,26 +182,6 @@ void LCD_Puts(char8 *s)
 }
 
 /*======================================================
- * 波形生成
- *
- *======================================================*/
-CY_ISR(TimerISR_Handler)
-{    
-	// Caluclate Wave Value
-	phaseRegister += tuningWord;
-
-	// 32bitのphaseRegisterをテーブルの10bit(1024個)に丸める
-	uint32 index = phaseRegister >> 22;
-    uint16 waveValue = waveTableSine[index];
-	
-	//DACSetVoltage(waveValue);
-    IDAC8_SetValue(waveValue >> 4);
-    IDAC7_SetValue(waveValue >> 5);
-    
-    SamplingTimer_ClearInterrupt(SamplingTimer_INTR_MASK_TC);
-}
-
-/*======================================================
  * 入力処理 
  *
  *======================================================*/
@@ -226,6 +214,43 @@ void pollingSW()
 }
 
 /*======================================================
+ * 波形生成
+ *
+ *======================================================*/
+CY_ISR(TimerISR_Handler)
+{
+	uint16 index;
+	int32 waveValue, lfoValue;
+	
+	// Caluclate LFO Value
+	//
+	lfoPhaseRegister += lfoTuningWord;
+	
+	// 32bitのphaseRegisterをテーブルの10bit(1024個)に丸める
+	index = lfoPhaseRegister >> 22;
+	
+	// lookupTable(11bit + 1bit) * (lfoAmount(8bit) -> 20bit) : 31bit + 1bit
+    lfoValue = ((int32)waveTableSine[index] - 2048) * ((int32)lfoAmount << 12);
+	
+	// tuningWord(32bit) * lfoValue(31bit + 1bit) : (63bit + 1bit) -> 31bit + 1bit
+	lfoValue = (int32)(((int64)tuningWord * lfoValue) >> 32);
+		
+	// Caluclate Wave Value
+	//
+	phaseRegister += tuningWord + lfoValue;
+
+	// 32bitのphaseRegisterをテーブルの10bit(1024個)に丸める
+	index = phaseRegister >> 22;
+    waveValue = waveTableSine[index];
+	
+	//DACSetVoltage(waveValue);
+    IDAC8_SetValue(waveValue >> 4);
+    IDAC7_SetValue(lfoValue >> 5);
+    
+    SamplingTimer_ClearInterrupt(SamplingTimer_INTR_MASK_TC);
+}
+
+/*======================================================
  * メインルーチン
  *
  *======================================================*/
@@ -234,9 +259,15 @@ int main()
     char  lcdLine[16 + 1];
     
     // 変数を初期化
-	double waveFrequency = 1000.0f;
+	waveFrequency = 1000.0f;
 	tuningWord = waveFrequency * pow(2.0, 32) / SAMPLE_CLOCK;
     phaseRegister = 0;
+	
+	lfoFrequency = 1.0f;
+	lfoTuningWord = lfoFrequency * pow(2.0, 32) / SAMPLE_CLOCK;
+    lfoPhaseRegister = 0;
+    
+    lfoAmount = 255;
     
     // コンポーネントを初期化
     SamplingTimer_Start(); 
@@ -263,10 +294,10 @@ int main()
     LCD_Init();
     LCD_Clear();
     
-	LCD_Puts("PSoC PyunPyun");
+	LCD_Puts("PyunPyun");
 	
 	LCD_SetPos(1, 1);
-    LCD_Puts("Demonstration");
+    LCD_Puts("Machine #3");
     
     CyDelay(500);
     
