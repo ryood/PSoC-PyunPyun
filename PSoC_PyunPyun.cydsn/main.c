@@ -301,9 +301,7 @@ int main()
     // コンポーネントを初期化
     SamplingTimer_Start(); 
     TimerISR_StartEx(TimerISR_Handler);
-    IDAC8_Start();
-    IDAC7_Start();
-    
+        
     /* Init and start sequencing SAR ADC */
     ADC_SAR_Seq_Start();
     ADC_SAR_Seq_StartConvert();
@@ -329,6 +327,10 @@ int main()
     LCD_Puts("Machine #3");
     
     CyDelay(1000);
+    
+    /* Start Wave Output */
+    IDAC8_Start();
+    IDAC7_Start();
     
     for(;;)
     {
