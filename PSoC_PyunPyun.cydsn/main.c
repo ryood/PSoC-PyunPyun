@@ -74,7 +74,7 @@ volatile uint8 lfoDepth;
 volatile uint8 waveShape;
 volatile uint8 lfoShape;
 
-uint16 *waveTables[WAVE_SHAPE_N]; 
+const uint16 *waveTables[WAVE_SHAPE_N]; 
 
 /* DDS用変数 */
 volatile uint32 phaseRegister;
@@ -251,7 +251,7 @@ CY_ISR(TimerISR_Handler)
 	index = lfoPhaseRegister >> 22;
 	
 	// lookupTable(11bit + 1bit) * (lfoDepth(8bit) -> 20bit) : 31bit + 1bit
-    lfoValue = ((int32)waveTableSine[index] - 2048) * ((int32)lfoDepth << 12);
+    lfoValue = ((int32)(*(waveTables[lfoShape] + index)) - 2048) * ((int32)lfoDepth << 12);
 	
 	// tuningWord(32bit) * lfoValue(31bit + 1bit) : (63bit + 1bit) -> 31bit + 1bit
 	lfoValue = (int32)(((int64)tuningWord * lfoValue) >> 31);
@@ -262,7 +262,7 @@ CY_ISR(TimerISR_Handler)
 
 	// 32bitのphaseRegisterをテーブルの10bit(1024個)に丸める
 	index = phaseRegister >> 22;
-    waveValue = waveTableSine[index];
+    waveValue = *(waveTables[waveShape] + index);
 	
 	//DACSetVoltage(waveValue);
     IDAC8_SetValue(waveValue >> 4);
@@ -291,6 +291,12 @@ int main()
     lfoDepth = 255;
 	waveShape = 0;
 	lfoShape = 0;
+    
+    waveTables[0] = waveTableSine;
+    waveTables[1] = waveTableTriangle;
+    waveTables[2] = waveTableSqure;
+    waveTables[3] = waveTableSawtoothDown;
+    waveTables[4] = waveTableSawtoothUp;
     
     // コンポーネントを初期化
     SamplingTimer_Start(); 
