@@ -36,6 +36,10 @@
 #define ADC_LOW_LIMIT   ((int16)0x000)
 #define ADC_HIGH_LIMIT  ((int16)0x7FF)
 
+/* Wave Tables */
+#define WAVE_SHAPE_N	5
+#define WAVE_TABLE_LEN	1024
+
 /***************************************
 * マクロ
 ****************************************/
@@ -66,7 +70,11 @@
 /* 波形パラメーター */
 volatile double waveFrequency;
 volatile double lfoFrequency;
-volatile uint8 lfoAmount;
+volatile uint8 lfoDepth;
+volatile uint8 waveShape;
+volatile uint8 lfoShape;
+
+uint16 *waveTables[WAVE_SHAPE_N]; 
 
 /* DDS用変数 */
 volatile uint32 phaseRegister;
@@ -81,8 +89,11 @@ uint8 swWavForm;
 uint8 swLfoForm;
 uint8 prevSwWavForm = 0u;
 uint8 prevSwLfoForm = 0u;
-int swWavFormCount = 0;
-int swLfoFormCount = 0;                
+
+/* 表示用 */
+const char *waveShapeStr[] = {
+	"SIN", "TRI", "SQR", "SW1", "SW2"
+};                
                 
 /*======================================================
  * LCD制御
@@ -196,6 +207,10 @@ void pollingADC()
     adcResult[ADC_CH_WAV_FREQ_N] = ADC_LIMIT(ADC_SAR_Seq_GetResult16(ADC_CH_WAV_FREQ_N));
     adcResult[ADC_CH_LFO_FREQ_N] = ADC_LIMIT(ADC_SAR_Seq_GetResult16(ADC_CH_LFO_FREQ_N));
     adcResult[ADC_CH_LFO_DEPT_N] = ADC_LIMIT(ADC_SAR_Seq_GetResult16(ADC_CH_LFO_DEPT_N));
+	
+	waveFrequency = (double)2000.0f * adcResult[ADC_CH_WAV_FREQ_N] / 2048;
+	lfoFrequency = (double)20.0f * adcResult[ADC_CH_LFO_FREQ_N] / 2048;
+	lfoDepth = (uint8)(adcResult[ADC_CH_LFO_DEPT_N] / 8);
 }
 
 // Switches
@@ -203,12 +218,18 @@ void pollingSW()
 {
     swWavForm = WAV_FORM_PIN_Read();
     if (swWavForm && !prevSwWavForm) {
-        swWavFormCount++;
+        waveShape++;
+		if (waveShape >= WAVE_SHAPE_N)
+			waveShape = 0;
     }
+	
     swLfoForm = LFO_FORM_PIN_Read();
     if (swLfoForm && !prevSwLfoForm) {
-        swLfoFormCount++;
+        lfoShape++;
+		if (lfoShape >= WAVE_SHAPE_N)
+			lfoShape = 0;
     }
+	
     prevSwWavForm = swWavForm;
     prevSwLfoForm = swLfoForm;    
 }
@@ -229,11 +250,11 @@ CY_ISR(TimerISR_Handler)
 	// 32bitのphaseRegisterをテーブルの10bit(1024個)に丸める
 	index = lfoPhaseRegister >> 22;
 	
-	// lookupTable(11bit + 1bit) * (lfoAmount(8bit) -> 20bit) : 31bit + 1bit
-    lfoValue = ((int32)waveTableSine[index] - 2048) * ((int32)lfoAmount << 12);
+	// lookupTable(11bit + 1bit) * (lfoDepth(8bit) -> 20bit) : 31bit + 1bit
+    lfoValue = ((int32)waveTableSine[index] - 2048) * ((int32)lfoDepth << 12);
 	
 	// tuningWord(32bit) * lfoValue(31bit + 1bit) : (63bit + 1bit) -> 31bit + 1bit
-	lfoValue = (int32)(((int64)tuningWord * lfoValue) >> 32);
+	lfoValue = (int32)(((int64)tuningWord * lfoValue) >> 31);
 		
 	// Caluclate Wave Value
 	//
@@ -267,7 +288,9 @@ int main()
 	lfoTuningWord = lfoFrequency * pow(2.0, 32) / SAMPLE_CLOCK;
     lfoPhaseRegister = 0;
     
-    lfoAmount = 255;
+    lfoDepth = 255;
+	waveShape = 0;
+	lfoShape = 0;
     
     // コンポーネントを初期化
     SamplingTimer_Start(); 
@@ -299,23 +322,26 @@ int main()
 	LCD_SetPos(1, 1);
     LCD_Puts("Machine #3");
     
-    CyDelay(500);
+    CyDelay(1000);
     
     for(;;)
     {
         pollingADC();
         pollingSW();
+        
+        tuningWord = waveFrequency * pow(2.0, 32) / SAMPLE_CLOCK;
+    	lfoTuningWord = lfoFrequency * pow(2.0, 32) / SAMPLE_CLOCK;
             
-        sprintf(lcdLine, "FREQ LFO DPT%4d", swWavFormCount);
+        sprintf(lcdLine, "FREQ LFO DPT %s", waveShapeStr[waveShape]);
         LCD_SetPos(0, 0);
         LCD_Puts(lcdLine);
         
         sprintf(
-            lcdLine, "%4d%4d%4d%4d",
-            adcResult[ADC_CH_WAV_FREQ_N], 
-            adcResult[ADC_CH_LFO_FREQ_N], 
-            adcResult[ADC_CH_LFO_DEPT_N],
-            swLfoFormCount
+            lcdLine, "%4d%4d%4d %s",
+            (int)waveFrequency,
+			(int)(lfoFrequency * 10),
+			lfoDepth,
+            waveShapeStr[lfoShape]
             );
         LCD_SetPos(0, 1);
         LCD_Puts(lcdLine);
