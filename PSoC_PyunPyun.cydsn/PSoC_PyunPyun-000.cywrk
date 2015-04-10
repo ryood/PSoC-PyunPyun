@@ -3,11 +3,11 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspc" version="5" xml_contents_version="3" name="PSoC_PyunPyun-000" persistent="" platform="NOT_USED">
-<current_project name=".\PSoC_PyunPyun.cyprj" />
+<current_project name="..\PSoC_PyunPyun_3rdLPF.cydsn\PSoC_PyunPyun_3rdLPF.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
-<v>.\PSoC_PyunPyun.cyprj</v>
+<v>..\PSoC_PyunPyun_3rdLPF.cydsn\PSoC_PyunPyun_3rdLPF.cyprj</v>
 </projects>
 <workspace_id v="37f4dd53-70ee-424b-9ec7-743dbb070507" />
 <WriteAppVersionLastSavedWith v="3.1.0.1722" />
