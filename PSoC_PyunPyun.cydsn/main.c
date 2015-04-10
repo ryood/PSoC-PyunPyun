@@ -37,8 +37,12 @@
 #define ADC_HIGH_LIMIT  ((int16)0x7FF)
 
 /* Wave Tables */
-#define WAVE_SHAPE_N	5
-#define WAVE_TABLE_LEN	1024
+#define WAVE_SHAPE_N	(5)
+#define WAVE_TABLE_LEN	(1024)
+
+/* Wave & LFO Frequency Limit */
+#define WAVE_FREQ_MAX   ((double)8000.0f)
+#define LFO_FREQ_MAX    ((double)20.f)
 
 /***************************************
 * マクロ
@@ -208,8 +212,8 @@ void pollingADC()
     adcResult[ADC_CH_LFO_FREQ_N] = ADC_LIMIT(ADC_SAR_Seq_GetResult16(ADC_CH_LFO_FREQ_N));
     adcResult[ADC_CH_LFO_DEPT_N] = ADC_LIMIT(ADC_SAR_Seq_GetResult16(ADC_CH_LFO_DEPT_N));
 	
-	waveFrequency = (double)2000.0f * adcResult[ADC_CH_WAV_FREQ_N] / 2048;
-	lfoFrequency = (double)20.0f * adcResult[ADC_CH_LFO_FREQ_N] / 2048;
+	waveFrequency = WAVE_FREQ_MAX * adcResult[ADC_CH_WAV_FREQ_N] / 2048;
+	lfoFrequency = LFO_FREQ_MAX * adcResult[ADC_CH_LFO_FREQ_N] / 2048;
 	lfoDepth = (uint8)(adcResult[ADC_CH_LFO_DEPT_N] / 8);
 }
 
